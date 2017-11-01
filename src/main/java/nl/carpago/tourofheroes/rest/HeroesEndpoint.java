@@ -18,7 +18,6 @@ import nl.carpago.tourofheroes.domain.Hero;
 
 @Path("heroes")
 @Component
-@CrossOrigin
 public class HeroesEndpoint {
    
    private List<Hero> heroes = new ArrayList<>();
