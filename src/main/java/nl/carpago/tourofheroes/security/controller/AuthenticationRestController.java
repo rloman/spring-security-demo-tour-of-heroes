@@ -1,7 +1,5 @@
 package nl.carpago.tourofheroes.security.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import nl.carpago.tourofheroes.security.JwtAuthenticationRequest;
 import nl.carpago.tourofheroes.security.JwtTokenUtil;
-import nl.carpago.tourofheroes.security.JwtUser;
 import nl.carpago.tourofheroes.security.service.JwtAuthenticationResponse;
 
 @RestController
@@ -55,20 +52,6 @@ public class AuthenticationRestController {
 
         // Return the token
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
-    }
-
-    @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
-    public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
-        String token = request.getHeader(tokenHeader);
-        String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-
-        if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
-            String refreshedToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
-        } else {
-            return ResponseEntity.badRequest().body(null);
-        }
     }
 
 }
