@@ -5,11 +5,8 @@
 
 	<groupId>nl.carpago</groupId>
 	<artifactId>tour-of-heroes-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
-	<name>tour-of-heroes-api</name>
-	<description>Tour of Heroes REST api</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -82,6 +79,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
