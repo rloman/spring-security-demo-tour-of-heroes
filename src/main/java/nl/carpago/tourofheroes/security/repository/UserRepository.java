@@ -25,7 +25,7 @@ public class UserRepository {
       User user = new User();
       user.setId(3L);
       user.setUsername("rloman");
-      user.setPassword("bloemen");
+      user.setPassword("$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi");
       
       Authority a = new Authority();
       a.setId(3L);
@@ -34,6 +34,7 @@ public class UserRepository {
       
       user.setAuthorities(Arrays.asList(a));
       
+      this.userlist.add(user);
    }
    
     public User findByUsername(String username) {
