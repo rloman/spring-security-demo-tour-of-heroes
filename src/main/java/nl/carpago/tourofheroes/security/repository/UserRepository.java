@@ -25,7 +25,7 @@ public class UserRepository {
       User user = new User();
       user.setId(3L);
       user.setUsername("rloman");
-      user.setPassword("$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi");
+      user.setPassword("$2a$04$6VB47l.ngOqIxwn92MYKAuakyjpL1mObJLTbgFChoKRLSMoiP1KIW");
       
       Authority a = new Authority();
       a.setId(3L);
