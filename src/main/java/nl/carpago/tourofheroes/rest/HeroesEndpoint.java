@@ -30,7 +30,6 @@ public class HeroesEndpoint {
 
    @RequestMapping(value = "heroes", method = RequestMethod.GET)
    public Iterable<Hero> list() {
-      // Iterable<Adres> result = this.adresService.findAll();
 
       return this.heroes;
    }
