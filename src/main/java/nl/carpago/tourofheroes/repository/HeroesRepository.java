@@ -35,11 +35,11 @@ public class HeroesRepository {
       return this.heroes.get(id);
    }
 
-   public void deleteById(Long id) {
+   public void deleteById(long id) {
       this.heroes.remove(id);
    }
 
-   public void update(Long id, Hero invalue) {
+   public void update(long id, Hero invalue) {
       
       Hero hero = this.heroes.get(id);
       hero.setName(invalue.getName());

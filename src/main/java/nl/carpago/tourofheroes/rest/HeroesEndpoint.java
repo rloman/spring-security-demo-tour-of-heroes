@@ -25,7 +25,7 @@ public class HeroesEndpoint {
    }
    
    @RequestMapping(value="/{id}", method=RequestMethod.GET)
-   public Hero getById(@PathVariable Long id){ 
+   public Hero getById(@PathVariable long id){ 
       
       return this.repository.findById(id);
       
@@ -38,13 +38,13 @@ public class HeroesEndpoint {
    }
    
    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-   public void deleteById(@PathVariable Long id){
+   public void deleteById(@PathVariable long id){
       
       this.repository.deleteById(id);
    }
    
    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-   public void putById(@PathVariable Long id, @RequestBody Hero hero) {
+   public void putById(@PathVariable long id, @RequestBody Hero hero) {
       
       this.repository.update(id, hero);
    }
