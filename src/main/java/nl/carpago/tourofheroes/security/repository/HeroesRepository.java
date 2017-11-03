@@ -19,7 +19,7 @@ public class HeroesRepository {
    public void init() {
       for(int i = 0;i<5;i++) {
          Hero hero = new Hero();
-         hero.setId(Double.valueOf(Math.random()* 1000).intValue());
+         hero.setId(Double.valueOf(Math.random()* 10000).intValue());
          hero.setName("Hero name "+hero.getId());
          this.heroes.put(hero.getId(), hero);
       }
@@ -34,7 +34,30 @@ public class HeroesRepository {
       
       return this.heroes.get(id);
    }
-   
-   
+
+   public void deleteById(Long id) {
+      this.heroes.remove(id);
+   }
+
+   public void update(Long id, Hero invalue) {
+      
+      Hero hero = this.heroes.get(id);
+      hero.setName(invalue.getName());
+      
+      
+   }
+
+   public Hero insert(final Hero heroIn) {
+      
+      long id = Double.valueOf(Math.random() * 10000).longValue();
+      Hero hero = new Hero();
+      hero.setId(id);
+      hero.setName(heroIn.getName());
+      
+      this.heroes.put(id, hero);
+      
+      return hero;
+      
+   }
 
 }
