@@ -44,7 +44,7 @@ public class HeroesEndpoint {
    }
    
    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-   public void putById(@PathVariable("id") Long id, @RequestBody Hero hero){
+   public void putById(@PathVariable Long id, @RequestBody Hero hero) {
       
       this.repository.update(id, hero);
    }
