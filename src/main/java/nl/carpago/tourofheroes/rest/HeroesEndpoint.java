@@ -1,37 +1,34 @@
 package nl.carpago.tourofheroes.rest;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.websocket.server.PathParam;
 
-import javax.annotation.PostConstruct;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.carpago.tourofheroes.domain.Hero;
+import nl.carpago.tourofheroes.security.repository.HeroesRepository;
 
 @RestController
+@RequestMapping("heroes")
 public class HeroesEndpoint {
    
-   private List<Hero> heroes = new ArrayList<>();
-   
-   @PostConstruct
-   public void init() {
-      for(int i = 0;i<5;i++) {
-         Hero hero = new Hero();
-         hero.setId(Double.valueOf(Math.random()* 1000).intValue());
-         hero.setName("Hero name "+hero.getId());
-         this.heroes.add(hero);
-      }
-      
-   }
+   @Autowired
+   private HeroesRepository repository;
    
 
-   @RequestMapping(value = "heroes", method = RequestMethod.GET)
+   @RequestMapping(value = "", method = RequestMethod.GET)
    public Iterable<Hero> list() {
 
-      return this.heroes;
+      return this.repository.findAll();
+   }
+   
+   @RequestMapping(value="{id}", method=RequestMethod.GET)
+   public Hero getById(@PathParam("id") long id){ 
+      
+      return this.repository.findById(id);
+      
    }
 
 }
