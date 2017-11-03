@@ -8,44 +8,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.carpago.tourofheroes.domain.Hero;
-import nl.carpago.tourofheroes.repository.HeroesRepository;
+import nl.carpago.tourofheroes.service.HeroesService;
 
 @RestController
 @RequestMapping("heroes")
 public class HeroesEndpoint {
    
    @Autowired
-   private HeroesRepository repository;
+   private HeroesService service;
    
 
    @RequestMapping(value = "", method = RequestMethod.GET)
    public Iterable<Hero> list() {
 
-      return this.repository.findAll();
+      return this.service.findAll();
    }
    
    @RequestMapping(value="/{id}", method=RequestMethod.GET)
    public Hero getById(@PathVariable long id){ 
       
-      return this.repository.findById(id);
+      return this.service.findById(id);
       
    }
    
    @RequestMapping(method=RequestMethod.POST)
    public Hero insert(@RequestBody Hero heroIn) {
      
-      return this.repository.insert(heroIn);
+      return this.service.insert(heroIn);
    }
    
    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
    public void deleteById(@PathVariable long id){
       
-      this.repository.deleteById(id);
+      this.service.deleteById(id);
    }
    
    @RequestMapping(value="/{id}", method=RequestMethod.PUT)
    public void putById(@PathVariable long id, @RequestBody Hero hero) {
       
-      this.repository.update(id, hero);
+      this.service.update(id, hero);
    }
 }
