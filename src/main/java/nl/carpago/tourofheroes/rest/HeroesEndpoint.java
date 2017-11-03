@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.carpago.tourofheroes.domain.Hero;
-import nl.carpago.tourofheroes.security.repository.HeroesRepository;
+import nl.carpago.tourofheroes.repository.HeroesRepository;
 
 @RestController
 @RequestMapping("heroes")

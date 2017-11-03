@@ -1,4 +1,4 @@
-package nl.carpago.tourofheroes.security.repository;
+package nl.carpago.tourofheroes.repository;
 
 import java.util.HashMap;
 import java.util.Map;
