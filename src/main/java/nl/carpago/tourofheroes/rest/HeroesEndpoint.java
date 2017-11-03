@@ -1,37 +1,51 @@
 package nl.carpago.tourofheroes.rest;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.carpago.tourofheroes.domain.Hero;
+import nl.carpago.tourofheroes.repository.HeroesRepository;
 
 @RestController
+@RequestMapping("heroes")
 public class HeroesEndpoint {
    
-   private List<Hero> heroes = new ArrayList<>();
+   @Autowired
+   private HeroesRepository repository;
    
-   @PostConstruct
-   public void init() {
-      for(int i = 0;i<5;i++) {
-         Hero hero = new Hero();
-         hero.setId(Double.valueOf(Math.random()* 1000).intValue());
-         hero.setName("Hero name "+hero.getId());
-         this.heroes.add(hero);
-      }
+
+   @RequestMapping(value = "", method = RequestMethod.GET)
+   public Iterable<Hero> list() {
+
+      return this.repository.findAll();
+   }
+   
+   @RequestMapping(value="/{id}", method=RequestMethod.GET)
+   public Hero getById(@PathVariable long id){ 
+      
+      return this.repository.findById(id);
       
    }
    
-
-   @RequestMapping(value = "heroes", method = RequestMethod.GET)
-   public Iterable<Hero> list() {
-
-      return this.heroes;
+   @RequestMapping(method=RequestMethod.POST)
+   public Hero insert(@RequestBody Hero heroIn) {
+     
+      return this.repository.insert(heroIn);
    }
-
+   
+   @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+   public void deleteById(@PathVariable long id){
+      
+      this.repository.deleteById(id);
+   }
+   
+   @RequestMapping(value="/{id}", method=RequestMethod.PUT)
+   public void putById(@PathVariable long id, @RequestBody Hero hero) {
+      
+      this.repository.update(id, hero);
+   }
 }
