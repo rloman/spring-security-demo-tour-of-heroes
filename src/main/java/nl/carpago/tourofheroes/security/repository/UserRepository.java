@@ -12,9 +12,6 @@ import nl.carpago.tourofheroes.model.security.Authority;
 import nl.carpago.tourofheroes.model.security.AuthorityName;
 import nl.carpago.tourofheroes.model.security.User;
 
-/**
- * Created by stephan on 20.03.16.
- */
 @Component
 public class UserRepository {
    
@@ -24,8 +21,8 @@ public class UserRepository {
    public void setUp() {
       User user = new User();
       user.setId(3L);
-      user.setUsername("rloman");
-      user.setPassword("$2a$04$6VB47l.ngOqIxwn92MYKAuakyjpL1mObJLTbgFChoKRLSMoiP1KIW");
+      user.setUsername("<your user id>");
+      user.setPassword("<set password here based on bcrypt using: https://www.dailycred.com/article/bcrypt-calculator");
       
       Authority a = new Authority();
       a.setId(3L);
